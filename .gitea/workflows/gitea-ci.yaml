@@ -17,5 +17,5 @@ jobs:
       - name: Deploy
         run: |
             echo "${{ secrets.GITEATOKEN }}" | docker login git.mausas.de -u maurice.hansen --password-stdin
-            docker build -t git.mausas.de/maurice.hansen/${{ gitea.repository }}:latest .
-            docker push git.mausas.de/maurice.hansen/${{ gitea.repository }}
+            docker build -t git.mausas.de/${{ gitea.repository }}:latest .
+            docker push git.mausas.de/${{ gitea.repository }}
