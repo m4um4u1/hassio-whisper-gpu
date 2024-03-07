@@ -1,0 +1,19 @@
+name: Build And Push
+run-name: ${{ gitea.actor }} is runs ci pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: gitea.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: |
+            echo "${{ secrets.GITEATOKEN }}" | docker login git.mausas.de -u maurice.hansen --password-stdin
+            docker build -t git.mausas.de/maurice.hansen/${{ gitea.repository }}:latest .
+            docker push git.mausas.de/maurice.hansen/${{ gitea.repository }}
