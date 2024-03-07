@@ -12,6 +12,8 @@ jobs:
     if: gitea.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
+      - name: Install Docker
+        run: curl -fsSL https://get.docker.com | sh
       - name: Deploy
         run: |
             echo "${{ secrets.GITEATOKEN }}" | docker login git.mausas.de -u maurice.hansen --password-stdin
