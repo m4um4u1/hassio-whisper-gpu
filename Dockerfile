@@ -2,7 +2,7 @@ FROM nvidia/cuda:12.2.2-cudnn8-runtime-ubuntu22.04
 
 # Install Whisper
 WORKDIR /usr/src
-ARG WHISPER_VERSION='2.0.0'
+ARG WYOMING_WHISPER_VERSION='2.2.0'
 
 RUN \
     apt-get update \
@@ -16,7 +16,8 @@ RUN \
         setuptools \
         wheel \
     && pip3 install --no-cache-dir \
-        "wyoming-faster-whisper==${WHISPER_VERSION}" \
+        --extra-index-url https://www.piwheels.org/simple \
+        "wyoming-faster-whisper @ https://github.com/rhasspy/wyoming-faster-whisper/archive/refs/tags/v${WYOMING_WHISPER_VERSION}.tar.gz" \
     \
     && apt-get purge -y --auto-remove \
         build-essential \
