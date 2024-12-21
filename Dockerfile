@@ -2,7 +2,7 @@ FROM nvidia/cuda:12.2.2-cudnn8-runtime-ubuntu22.04
 
 # Install Whisper
 WORKDIR /usr/src
-ARG WYOMING_WHISPER_VERSION='2.2.0'
+ARG WYOMING_WHISPER_VERSION='2.4.0'
 
 RUN \
     apt-get update \
