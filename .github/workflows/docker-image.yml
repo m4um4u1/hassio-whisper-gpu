@@ -6,6 +6,9 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     env:
       DOCKER_TAG: :dev
       DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/hassio-whisper
@@ -25,3 +28,5 @@ jobs:
 
       - name: Push Docker image to GitHub Container Registry
         run: docker push ${{env.DOCKER_IMAGE}}${{env.DOCKER_TAG}}
+
+
